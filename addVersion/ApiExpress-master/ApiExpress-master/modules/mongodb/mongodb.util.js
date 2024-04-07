@@ -1,3 +1,5 @@
+//simplificacion del metodo unit en el archivo mongodb.utils.js
+
 (function () {
     'use strict';
 
@@ -6,38 +8,23 @@
     };
 
     var mongoose = require('mongoose');
-
     var mongodbConfig = require('../../config/mongodb/mongodb-config').mongodb;
 
     function init() {
         var options = {
-            promiseLibrary: require('bluebird'),
             useNewUrlParser: true,
-			useUnifiedTopology: true 
+            useUnifiedTopology: true
         };
 
-        var connectionString = prepareConnectionString(mongodbConfig);
+        // Directamente usa la cadena de conexión desde la configuración.
+        var connectionString = mongodbConfig.connectionString;
        
         mongoose.connect(connectionString, options)
-            .then(function (result) {
+            .then(function () {
                 console.log("MongoDB connection successful. DB: " + connectionString);
             })
             .catch(function (error) {
-                console.log(error.message);
-                console.log("Error occurred while connecting to DB: : " + connectionString);
+                console.log("Error occurred while connecting to DB: " + error.message);
             });
     }
-
-    function prepareConnectionString(config) {
-        var connectionString = 'mongodb://';
-
-        if (config.user) {
-            connectionString += config.user + ':' + config.password + '@';
-        }
-
-        connectionString += config.server + '/' + config.database;
-
-        return connectionString;
-    }
-
 })();

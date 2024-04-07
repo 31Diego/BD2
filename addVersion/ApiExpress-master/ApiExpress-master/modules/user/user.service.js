@@ -1,15 +1,17 @@
 (function () {
-    'use strict';
-
-    module.exports = {
-        createUser: createUser,
-        fetchUsers: fetchUsers,
-        fetchUserById: fetchUserById,
-        updateUser: updateUser,
-        deleteUser: deleteUser
-    };
+        'use strict';
+    
+        module.exports = {
+            createUser: createUser,
+            fetchUsers: fetchUsers,
+            fetchUserById: fetchUserById,
+            updateUser: updateUser,
+            deleteUser: deleteUser,
+            getUsersSummaryByCity: getUsersSummaryByCity // Nueva funcion, Usuarios por ciudad.
+        };
 
     var UserModel = require('./user.module')().UserModel;
+    
     function createUser(user) {
         return UserModel.create(user);
     }
@@ -34,5 +36,12 @@
         return UserModel
             .findByIdAndRemove(userId)
             .exec();
+    }
+
+    function getUsersSummaryByCity() {
+        return UserModel.aggregate([
+            { $group: { _id: "$city", totalUsers: { $sum: 1 } } },
+            { $sort: { totalUsers: -1 } }
+        ]).exec();
     }
 })();

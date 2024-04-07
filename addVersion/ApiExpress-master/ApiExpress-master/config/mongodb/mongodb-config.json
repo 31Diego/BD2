@@ -1,8 +1,5 @@
 {
   "mongodb": {
-    "server": "localhost:27017",
-    "database": "ApiExpress",
-    "user": null,
-    "password": null
+    "connectionString": "mongodb+srv://root:root@localhost:27017/ApiExpress?authSource=admin"
   }
 }
