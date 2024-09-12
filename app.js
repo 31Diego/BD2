@@ -10,6 +10,8 @@ var MongoDBUtil = require('./modules/mongodb/mongodb.module').MongoDBUtil;
 
 var UserController = require('./modules/user/user.module')().UserController;
 
+require('./config/mongodb/db'); //conectarse a db.js
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));

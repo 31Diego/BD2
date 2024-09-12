@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <script src="/styles/styleIndex.js" defer></script> 
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>Ingeniería de Software II: ¿Cómo funciona realmente JavaScript?</h1>
+        <p>Explorando las capacidades de EJS para la construcción de aplicaciones dinámicas.</p>
+    </div>
+    
+    <section id="usersSection">
+        <h2>Usuarios Registrados</h2>
+        <button id="loadUsersBtn" class="btn btn-primary">Cargar Usuarios</button>
+        <div id="usersList" class="mt-3">
+            
+        </div>
+    </section>
+    
+
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
